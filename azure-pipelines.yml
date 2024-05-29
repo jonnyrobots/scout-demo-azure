@@ -34,7 +34,7 @@ stages:
                 # Login to Docker Hub required for Docker Scout CLI
                 docker login -u $(DOCKER_HUB_USER) -p $(DOCKER_HUB_PAT)
                 # Get a CVE report for the built image and fail the pipeline when critical or high CVEs are detected
-                docker scout cves $(image):$(tag)
+                 docker scout cves $(image):$(tag) --exit-code --only-severity critical,high
   - stage: Build
     displayName: Push to production
     jobs:  
