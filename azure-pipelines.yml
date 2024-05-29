@@ -6,6 +6,12 @@
 trigger:
 - main
 
+- task: ManualIntervention@8
+  inputs:
+    instructions: 'Check the comparison'
+
 steps:
 - script: echo Hello, world!
   displayName: 'Echo check'
+
+
