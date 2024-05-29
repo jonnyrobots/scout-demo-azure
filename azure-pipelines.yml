@@ -6,16 +6,6 @@
 trigger:
 - main
 
-resources:
-  - repo: self
-
-variables:
-  tag: "$(Build.BuildId)"
-  image: "vonwig/nodejs-service"
-
-pool:
-  vmImage: ubuntu-latest
-
 steps:
 - script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  displayName: 'Echo check'
