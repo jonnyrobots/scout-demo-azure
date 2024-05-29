@@ -6,7 +6,10 @@
 trigger:
 - main
 
-
+- task: ManualIntervention@8
+  inputs:
+    instructions: 'Manual check needed: vulnerability status improved?'
+    emailRecipients: 'jonathan.roberts@docker.com'
 
 steps:
 - script: echo Hello, world!
