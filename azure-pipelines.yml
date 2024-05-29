@@ -64,4 +64,4 @@ stages:
                 docker login -u azpipelinepush -p $(AzureCR) jonny.azurecr.io
                 # build and push
                 # add dockerfle source?
-                docker buildx b -t $(image):$(tag) . --platform linux/amd64 --no-cache --push
+                docker buildx b -t $(image):$(tag) . --platform linux/amd64 --no-cache --sbom=1 --provenance=1 --push
