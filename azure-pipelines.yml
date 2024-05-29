@@ -14,7 +14,7 @@ variables:
   image: "jonny.azurecr.io/scout-demo-service"
 
 stages:
-  - stage: Build
+  - stage: Build_and_check_vulns
     displayName: Build image
     jobs:
       - job: Build
@@ -40,27 +40,19 @@ stages:
                 docker login -u $(DOCKER_HUB_USER) -p $(DOCKER_HUB_PAT)
                 # Get a CVE report for the built image and fail the pipeline when critical or high CVEs are detected
                 docker scout cves $(image):$(tag) --exit-code --only-severity critical,high
-  - stage: Push
-    displayName: Push image to ACR
+  - stage: Build_and_push
+    displayName: Build and push image to ACR
     jobs:
-      - job: Push
-        displayName: Push
+      - job: Build_and_Push
+        displayName: Build Push
         pool:
           vmImage: ubuntu-latest
         steps:
           - task: Docker@2
-            displayName: Push an image
+            displayName: Build the image
             inputs:
-              command: push
+              command: buildAndPush
               dockerfile: "$(Build.SourcesDirectory)/Dockerfile"
               repository: $(image)
               tags: |
                 $(tag)
-          - task: CmdLine@2
-            displayName: Push to ACR
-            inputs:
-              script: |
-                # Login to ACR required to push image
-                # docker login -u $(DOCKER_HUB_USER) -p $(DOCKER_HUB_PAT)
-                # Push image
-                docker buildx b -t $(image):$(tag) . --platform linux/amd64 --no-cache --push
