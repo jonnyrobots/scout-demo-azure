@@ -53,7 +53,5 @@ stages:
               script: |
                 # login to ACR 
                 docker login -u azpipelinepush -p $(AzureCR) jonny.azurecr.io
-                #containerd
-                docker buildx create --use
-                # build and push                
-                docker buildx b -t $(image):$(tag) . --platform linux/amd64 --no-cache --sbom=1 --provenance=1 --push
+                # build and push
+                docker buildx b -t $(image):$(tag) . --platform linux/amd64 --no-cache --push
