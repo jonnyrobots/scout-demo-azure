@@ -12,6 +12,7 @@ resources:
 variables:
   tag: "$(Build.BuildId)"
   image: "jonny.azurecr.io/scout-demo-service"
+  DOCKER_BUILDKIT: 1
 
 stages:
   - stage: Build_and_check_vulns
