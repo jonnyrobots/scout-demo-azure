@@ -57,4 +57,4 @@ stages:
                 # Login to Docker Hub required for Docker Scout CLI
                 docker login -u $(DOCKER_HUB_USER) -p $(DOCKER_HUB_PAT)
                 # submit VEX statement
-                docker scout attestation add $(image):$(tag) --file $(Build.SourcesDirectory)/CVE-2024-29041.vex.json --predicate-type https://openvex.dev/ns/v0.2.0
+                docker scout attestation add $(image):$(tag) --file $(Build.SourcesDirectory)/CVE-2022-24999.vex.json --predicate-type https://openvex.dev/ns/v0.2.0
