@@ -1,4 +1,4 @@
-FROM alpine:3.14@sha256:eb3e4e175ba6d212ba1d6e04fc0782916c08e1c9d7b45892e9796141b1d379ae
+FROM alpine:3.20@sha256:77726ef6b57ddf65bb551896826ec38bc3e53f75cdde31354fbffb4f25238ebd
 
 ENV BLUEBIRD_WARNINGS=0 \
   NODE_ENV=production \
@@ -17,6 +17,8 @@ RUN  apk add --no-cache npm \
  && apk del npm
  
 COPY . /app
+
+USER nonroot
 
 CMD ["node","/app/app.js"]
 
